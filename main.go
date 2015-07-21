@@ -22,13 +22,16 @@ type Notification struct {
   UnsubscribeURL string
 }
 
+const DEFAULT_BASE_URL = "https://api.hipchat.com/v1"
+
 type HipChatSender struct{
   AuthToken string
+  BaseURL string
 }
 
 func (h HipChatSender)SendMessage(room_id, message string) error {
   c := hipchat.Client{AuthToken: h.AuthToken}
-  c.BaseURL = "https://api.hipchat.com/v1"
+  c.BaseURL = h.BaseURL
   req := hipchat.MessageRequest{
     RoomId:        room_id,
     From:          "Amazon SNS",
@@ -74,7 +77,16 @@ func (h HipChatSender) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 func main() {
   fmt.Println("Starting aws-sns-hipchat server.")
+  
+  base := DEFAULT_BASE_URL
+  if b := os.Getenv("HIPCHAT_BASE_URL"); b != "" {
+    base = b
+  }
 
-  h := HipChatSender{AuthToken: os.Getenv("HIPCHAT_AUTH_TOKEN")}
+  h := HipChatSender{
+    AuthToken: os.Getenv("HIPCHAT_AUTH_TOKEN"),
+    BaseURL: base,
+  }
+  
   http.ListenAndServe(":"+os.Getenv("PORT"), h)
 }
