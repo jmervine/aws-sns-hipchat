@@ -1,0 +1,10 @@
+{
+	"ImportPath": "github.com/jmervine/aws-sns-hipchat",
+	"GoVersion": "go1.3.3",
+	"Deps": [
+		{
+			"ImportPath": "github.com/andybons/hipchat",
+			"Rev": "3d3573e9181b509e5f635de7a84377d04fe69aab"
+		}
+	]
+}
