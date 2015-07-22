@@ -9,9 +9,11 @@
   "website": "https://github.com/polydice/aws-sns-hipchat",
   "repository": "https://github.com/polydice/aws-sns-hipchat",
   "env": {
-    "BUILDPACK_URL": "https://github.com/kr/heroku-buildpack-go.git",
     "HIPCHAT_AUTH_TOKEN": {
       "description": "The API auth token for your HipChat account"
+    }
+    "HIPCHAT_BASE_URL": {
+      "description": "Optional, custom HipChat server"
     }
   }
 }
