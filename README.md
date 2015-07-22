@@ -34,6 +34,9 @@ To make this app up and work properly, you need to set an environment variable `
 
 ```bash
 heroku config:add HIPCHAT_AUTH_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# for private HipChat servers
+heroku config:add HIPCHAT_BASE_URL="http://my.hipchat.com:3333/v1/"
 ```
 
 ## Contact
